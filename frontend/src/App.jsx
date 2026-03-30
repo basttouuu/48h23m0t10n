@@ -176,6 +176,8 @@ function GameScreen({ questions, user }) {
   const [villainShake, setVillainShake] = useState(false);
   const [marioShake, setMarioShake] = useState(false);
   const [gameState, setGameState] = useState('PLAYING');
+  const [isDying, setIsDying] = useState(false);
+  const [isDamage, setIsDamage] = useState(false);
 
   const feedbackRef = useRef(null);
   const timerRef = useRef(null);
@@ -185,7 +187,10 @@ function GameScreen({ questions, user }) {
   /* ── Vérif fin de partie ── */
   const checkDeath = useCallback((newVillain, newMario, newLives) => {
     if (newVillain >= newMario - 5 || newLives <= 0) {
-      setGameState('LOSE');
+      setIsDying(true);
+      setTimerActive(false);
+      // Attend que l'animation de mort se joue avant d'afficher Game Over
+      setTimeout(() => setGameState('LOSE'), 1500);
       return true;
     }
     return false;
@@ -193,7 +198,7 @@ function GameScreen({ questions, user }) {
 
   /* ── Timer ── */
   useEffect(() => {
-    if (!timerActive || feedback || showSolution) return;
+    if (!timerActive || feedback || showSolution || isDying) return;
     if (timeLeft <= 0) {
       // Time's up → mauvaise réponse automatique
       handleTimeout();
@@ -239,6 +244,7 @@ function GameScreen({ questions, user }) {
     setFeedback(reason);
     setMarioShake(true);
     setVillainShake(true);
+    setIsDamage(true);
 
     setVillainPos(prev => {
       const next = prev + VILLAIN_WRONG_ADVANCE;
@@ -251,6 +257,7 @@ function GameScreen({ questions, user }) {
             setFeedback(null);
             setMarioShake(false);
             setVillainShake(false);
+            setIsDamage(false);
             setTimerActive(true);
           }, 1200);
         }
@@ -310,7 +317,7 @@ function GameScreen({ questions, user }) {
   const options = [q.option_a, q.option_b, q.option_c, q.option_d].filter(Boolean);
 
   return (
-    <div className="game-wrapper">
+    <div className={`game-wrapper ${isDamage ? 'damage-shake damage-flash' : ''} ${isDying ? 'death-fade' : ''}`}>
       {/* ── HUD ── */}
       <div className="hud">
         <div className="hud-left">
@@ -329,7 +336,7 @@ function GameScreen({ questions, user }) {
         <div className="hud-right">
           <div className="hud-lives">
             {Array.from({ length: TOTAL_LIVES }).map((_, i) => (
-              <span key={i} className={`heart-icon ${i < lives ? 'heart-filled' : 'heart-empty'}`}>
+              <span key={i} className={`heart-icon ${i < lives ? 'heart-filled' : 'heart-empty'} ${isDamage && i === lives ? 'heart-break' : ''}`}>
                 {i < lives ? '❤️' : '🖤'}
               </span>
             ))}
@@ -342,15 +349,15 @@ function GameScreen({ questions, user }) {
       <TimerBar timeLeft={timeLeft} total={QUESTION_TIME} />
 
       {/* ── PISTE DE COURSE ── */}
-      <div className="track-area">
+      <div className={`track-area ${isDying ? 'track-dim' : ''}`}>
         <div className="track-sky" />
         <div className="track-mountains" />
         <div className="track-ground" />
 
         {/* Villain (Goomba) */}
         <div
-          className={`villain-container ${villainShake ? 'villain-shake' : ''}`}
-          style={{ left: `${villainPos}%` }}
+          className={`villain-container ${villainShake ? 'villain-shake' : ''} ${isDying ? 'villain-laugh' : ''}`}
+          style={{ left: `${villainPos}%`, zIndex: isDying ? 10 : 3 }}
         >
           <div className="villain-label">⚡ BOSS</div>
           <img src={villainGif} alt="Boss" className="villain-sprite" />
@@ -358,14 +365,14 @@ function GameScreen({ questions, user }) {
 
         {/* Mario */}
         <div
-          className={`mario-container ${marioShake ? 'mario-shake' : ''}`}
-          style={{ left: `${marioPos}%` }}
+          className={`mario-container ${marioShake ? 'mario-shake' : ''} ${isDying ? 'mario-death' : ''}`}
+          style={{ left: `${marioPos}%`, zIndex: isDying ? 11 : 3 }}
         >
           <div className="mario-label">🌟 MARIO</div>
           <img
             src={marioImg}
             alt="Mario"
-            className={`mario-sprite ${feedback === 'correct' ? 'mario-jump' : 'mario-run'}`}
+            className={`mario-sprite ${feedback === 'correct' ? 'mario-jump' : isDying ? 'mario-dead-sprite' : 'mario-run'} ${isDamage ? 'mario-blink' : ''}`}
           />
         </div>
 

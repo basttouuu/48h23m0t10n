@@ -8,12 +8,11 @@ app.use(cors());
 app.use(express.json());
 
 const pool = new Pool({
-  user: process.env.DB_USER,
-  password: String(process.env.DB_PASSWORD),
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  database: process.env.DB_NAME,
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
 });
+
+
 
 pool.query('SELECT current_database(), NOW()', (err, res) => {
   if (err) console.error('❌ Erreur PostgreSQL :', err.message);

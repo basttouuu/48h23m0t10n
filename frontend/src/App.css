@@ -1207,6 +1207,108 @@ body::before {
   animation: emoji-bounce 0.3s ease infinite alternate, pulse-text 0.5s ease-in-out infinite;
 }
 
+/* ─────────────────────────────────────────────
+   DAMAGE & DEATH IMMERSIVE EFFECTS
+───────────────────────────────────────────── */
+
+/* Damage Effects (Mistake) */
+.damage-shake {
+  animation: bg-shake 0.4s ease;
+}
+
+.damage-flash::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 50%, rgba(255, 0, 0, 0.4) 100%);
+  pointer-events: none;
+  animation: flash-red 0.6s ease-out;
+  z-index: 100;
+}
+
+.mario-blink {
+  animation: hit-blink 0.2s steps(2) 3;
+  filter: drop-shadow(0 0 15px red) invert(0.2) sepia(1) saturate(5) hue-rotate(-50deg);
+}
+
+.heart-break {
+  animation: heart-shatter 0.6s forwards;
+}
+
+/* Death Effects (Game Over) */
+.death-fade::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 20, 0.8);
+  pointer-events: none;
+  animation: fade-to-black 1.5s forwards;
+  z-index: 5;
+}
+
+.track-dim {
+  filter: grayscale(0.8) brightness(0.4);
+  transition: filter 1s;
+}
+
+.villain-laugh {
+  animation: boss-laugh 0.4s infinite alternate;
+  filter: drop-shadow(0 0 30px red);
+  transform: scale(1.2);
+  transition: transform 0.3s;
+}
+
+.mario-death {
+  animation: mario-die-fly 1.5s cubic-bezier(0.3, 0, 0.7, 1) forwards;
+}
+
+.mario-dead-sprite {
+  filter: grayscale(1) brightness(0.5);
+  transform: rotate(180deg);
+}
+
+@keyframes flash-red {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes hit-blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes heart-shatter {
+  0% { transform: scale(1); filter: grayscale(0); }
+  40% { transform: scale(1.5) rotate(-15deg); filter: grayscale(0) brightness(1.5); }
+  100% { transform: scale(0) translateY(20px); filter: grayscale(1); opacity: 0; }
+}
+
+@keyframes bg-shake {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-10px, 5px); }
+  40% { transform: translate(10px, -5px); }
+  60% { transform: translate(-10px, -5px); }
+  80% { transform: translate(10px, 5px); }
+}
+
+@keyframes fade-to-black {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes boss-laugh {
+  from { transform: translateY(0) scale(1.2); }
+  to { transform: translateY(-15px) scale(1.2); }
+}
+
+@keyframes mario-die-fly {
+  0% { transform: translateY(0) rotate(0); }
+  30% { transform: translateY(-120px) rotate(180deg); }
+  100% { transform: translateY(400px) rotate(180deg); opacity: 0; }
+}
+
 /* ══════════════════════════════════════════
    RESPONSIVE
    ══════════════════════════════════════════ */
