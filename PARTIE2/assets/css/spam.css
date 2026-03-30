@@ -1,0 +1,133 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #ff00ff; /* Magenta aggressif */
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Empêche de scroller si une pub sort de l'écran */
+}
+
+.main-warning {
+    background: yellow;
+    color: red;
+    font-size: 2rem;
+    font-weight: bold;
+    border-bottom: 5px solid black;
+    padding: 5px 0;
+    z-index: 1000;
+}
+
+.spam-container {
+    flex: 1;
+    position: relative; /* CRUCIAL : Les pubs absolues restent dans cette zone */
+    width: 100%;
+}
+
+/* Style commun des pubs */
+.ad-card {
+    position: absolute;
+    width: 280px;
+    background: white;
+    border: 4px outset #0000ff;
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.6);
+}
+
+.ad-header {
+    background: #000080;
+    color: white;
+    padding: 3px 8px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: sans-serif;
+    cursor: default;
+}
+
+.close-btn {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 0 5px;
+}
+
+.close-btn:hover {
+    background-color: red;
+}
+
+.ad-body {
+    padding: 10px;
+    text-align: center;
+    color: black;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.ad-body button {
+    margin-top: 8px;
+    background: red;
+    color: white;
+    font-weight: bold;
+    border: 2px solid darkred;
+    padding: 5px 10px;
+    cursor: pointer;
+    animation: blinker 0.5s linear infinite;
+}
+
+/* Le bon lien caché dessous */
+.secret-ad {
+    top: 35%;
+    left: 40%;
+    border-color: red;
+    z-index: 10; /* Fond de la pile */
+    animation: shake 1s infinite;
+}
+
+.secret-ad .big-text {
+    font-size: 1.2rem;
+    color: red;
+}
+
+/* Les autres pubs par dessus */
+.ad-trap {
+    z-index: 50;
+}
+
+.main-footer {
+    height: 40px;
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    border-top: 3px solid white;
+    z-index: 1000;
+}
+
+@keyframes blinker { 50% { opacity: 0; } }
+@keyframes shake {
+    0% { transform: translate(1px, 1px); }
+    50% { transform: translate(-1px, -1px); }
+    100% { transform: translate(1px, -1px); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.ad-card.bounce {
+    animation: bounce 0.5s ease-in-out;
+}
+
+/* Animations supplémentaires pour meilleure UX */
+.ad-card {
+    transition: all 0.3s ease;
+}
+
+.ad-card:hover {
+    box-shadow: 15px 15px 0px rgba(0,0,0,0.8);
+}

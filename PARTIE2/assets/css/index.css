@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #eee;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    width: 100%;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.header h1 {
+    font-size: 3em;
+    color: #00ff41;
+    text-shadow: 0 0 20px #00ff41;
+    margin-bottom: 10px;
+    animation: glow 2s ease-in-out infinite;
+}
+
+.header p {
+    font-size: 1.1em;
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.card {
+    background: rgba(0, 255, 65, 0.05);
+    border: 2px solid #00ff41;
+    padding: 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card:hover {
+    background: rgba(0, 255, 65, 0.15);
+    box-shadow: 0 0 20px #00ff41;
+    transform: translateY(-5px);
+}
+
+.card h2 {
+    font-size: 1.5em;
+    color: #00ff41;
+    text-shadow: 0 0 10px #00ff41;
+}
+
+.card p {
+    color: #aaa;
+    font-size: 0.95em;
+}
+
+.card .meta {
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 5px;
+}
+
+.card .badge {
+    display: inline-block;
+    background: rgba(255, 150, 0, 0.2);
+    border: 1px solid #ff9900;
+    color: #ffcc99;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    width: fit-content;
+}
+
+.card.primary {
+    border: 2px solid #00ffff;
+}
+
+.card.primary h2 {
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+}
+
+.card.primary:hover {
+    background: rgba(0, 255, 255, 0.15);
+    box-shadow: 0 0 20px #00ffff;
+}
+
+.footer {
+    text-align: center;
+    color: #666;
+    font-size: 0.9em;
+    border-top: 1px solid #00ff41;
+    padding-top: 20px;
+    margin-top: 40px;
+}
+
+.ascii-art {
+    text-align: center;
+    color: #00ff41;
+    font-size: 0.7em;
+    margin: 20px 0;
+    white-space: pre;
+    line-height: 1.2;
+}
+
+@keyframes glow {
+    0%, 100% { text-shadow: 0 0 20px #00ff41; }
+    50% { text-shadow: 0 0 40px #00ff41; }
+}
+
+@media (max-width: 600px) {
+    .header h1 {
+        font-size: 2em;
+    }
+
+    .menu {
+        grid-template-columns: 1fr;
+    }
+}

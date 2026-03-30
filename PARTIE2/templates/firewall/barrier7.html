@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barrier 7</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    </head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-info">
+                <h1>Barrière 7</h1>
+                <p>Gestion de version contrôlée</p>
+            </div>
+            <div class="header-nav">
+                <a href="hub.html">← Accueil</a>
+            </div>
+        </div>
+
+        <div class="barrier-card">
+            <h2 class="barrier-title">Accès Restreint</h2>
+            <p class="barrier-description">Entrez vos identifiants pour accéder au système.</p>
+
+            <div class="progress-bar"><div class="progress-fill" id="progressB7"></div></div>
+            <div id="message" class="message"></div>
+
+            
+            <input type="hidden" id="hidden_admin_key" value="hidden_value_pw">
+            <div class="input-group">
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" autocomplete="off">
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="checkPassword()">Accéder</button>
+                <button class="btn btn-secondary" onclick="toggleHint()">Aide</button>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item"><div class="info-label">Tentatives</div><div class="info-value" id="attempts">0/5</div></div>
+                <div class="info-item"><div class="info-label">Durée</div><div class="info-value" id="timer">0s</div></div>
+            </div>
+
+            <div class="hints-section">
+                <div id="hint-display" class="hint-display"></div>
+            </div>
+        </div>
+    </div>
+
+        <script src="../../src/js/firewall/barrier.js"></script>
+</body>
+</html>
