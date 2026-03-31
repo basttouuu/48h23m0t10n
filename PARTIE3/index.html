@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Partie 3 — Cœur du réseau | Erreur 404 — Nuit Blanche</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="map-bg" aria-hidden="true">
+      <div class="map-bg__raster"></div>
+      <div class="map-bg__shade"></div>
+    </div>
+    <div class="hud-grid-bg" aria-hidden="true"></div>
+    <div class="hud-radar-sweep" aria-hidden="true"></div>
+
+    <div id="app" data-theme="intro">
+      <aside class="hud-panel hud-panel--stats" aria-label="Statistiques holistiques">
+        <div class="hud-panel__title">STATISTIQUES</div>
+        <div class="hud-stat">
+          <span class="hud-stat__label">Détections / s</span>
+          <span class="hud-stat__value hud-stat__value--pulse" id="hud-detections">—</span>
+        </div>
+        <div class="hud-stat">
+          <span class="hud-stat__label">Région</span>
+          <span class="hud-stat__value">EU-SOUTH</span>
+        </div>
+        <div class="hud-stat">
+          <span class="hud-stat__label">OAS</span>
+          <span class="hud-stat__bar"><span class="hud-stat__bar-fill" style="width: 72%"></span></span>
+        </div>
+        <div class="hud-stat">
+          <span class="hud-stat__label">Web AV</span>
+          <span class="hud-stat__bar hud-stat__bar--warn"><span class="hud-stat__bar-fill" style="width: 41%"></span></span>
+        </div>
+        <div class="hud-stat">
+          <span class="hud-stat__label">Ransomware</span>
+          <span class="hud-stat__bar hud-stat__bar--danger"><span class="hud-stat__bar-fill" style="width: 88%"></span></span>
+        </div>
+        <p class="hud-panel__foot">Détections : indicateurs décoratifs.</p>
+        <div class="hud-mini-map" aria-hidden="true">
+          <div class="hud-mini-map__grid"></div>
+          <div class="hud-mini-map__crosshair"></div>
+        </div>
+      </aside>
+
+      <div class="dashboard-column">
+        <header class="topbar terminal-chrome">
+          <div class="topbar-window-btns" aria-hidden="true">
+            <span class="win-dot win-dot--close"></span>
+            <span class="win-dot win-dot--min"></span>
+            <span class="win-dot win-dot--max"></span>
+          </div>
+          <div class="brand">
+            <span class="brand-mark" aria-hidden="true">█</span>
+            <div>
+              <div class="brand-title" id="brand-title">entropyNet://client</div>
+              <div class="brand-subtitle" id="brand-sub">session — local</div>
+            </div>
+          </div>
+          <div class="topbar-actions">
+            <span class="clock-badge" id="clock-badge">UTC 23:30:00</span>
+            <button type="button" class="btn btn-ghost" id="btn-reset">[ reset ]</button>
+          </div>
+        </header>
+
+        <main class="main-stage">
+          <div class="terminal-window">
+            <div class="terminal-window__title">
+              <span class="terminal-window__path" id="terminal-path">~/epsilon/phase3</span>
+              <span class="terminal-window__hint">— INSERT MODE</span>
+            </div>
+            <div class="terminal-window__body">
+              <section id="view-first-launch" class="view view-first-launch" hidden>
+                <p class="term-line"><span class="term-prompt">COMMAND</span><span class="term-colon">:</span><span class="term-path">/bridge</span>$ uplink --init</p>
+                <div class="intro-card">
+                  <p class="intro-kicker">[ XCOM // PRIME ]</p>
+                  <h1 class="intro-title">
+                    OPERATION <span class="intro-title__accent">NIGHT SHARD</span>
+                  </h1>
+                  <p class="intro-lead">
+                    La fenêtre d'intrusion est ouverte. Une IA de défense verrouille le <strong>mainframe</strong> en
+                    cycles courts.
+                  </p>
+                  <p class="intro-lead intro-lead--dim">
+                    Objectif : extraire les journaux cibles. Échec QCM ou timeout -> contre-mesure pare-feu.
+                  </p>
+                  <button type="button" class="btn btn-primary btn-lg" id="btn-first-launch-continue">
+                    &gt; confirmer mission
+                  </button>
+                </div>
+              </section>
+
+              <section id="view-intro" class="view view-intro">
+                <p class="term-line"><span class="term-prompt">root@entropy</span><span class="term-colon">:</span><span class="term-path">~</span>$ ./briefing.sh</p>
+                <div class="intro-card">
+                  <p class="intro-kicker">[ PROJET E.P.S.I.L.O.N. ]</p>
+                  <h1 class="intro-title">PHASE_03 — <span class="intro-title__accent">MAINFRAME</span></h1>
+                  <p class="intro-lead">
+                    Connexion établie après saut du pare-feu. Cible : <strong>base centrale</strong>. Objectif :
+                    <strong>exfiltration logs</strong> → relais anonyme (DGSI).
+                  </p>
+                  <p class="intro-lead intro-lead--dim">
+                    Boss phase : QCM niveau 4, chrono serré à chaque question. Une erreur ou un timeout, et le
+                    pare-feu te reprend.
+                  </p>
+                  <button type="button" class="btn btn-primary btn-lg" id="btn-start">
+                    &gt; lancer infiltration_mainframe
+                  </button>
+                </div>
+              </section>
+
+              <section id="view-part3" class="view view-core" hidden>
+                <div class="countdown-banner">
+                  <span class="countdown-banner__label">Fenêtre avant effacement régional</span>
+                  <span class="countdown-big" id="countdown-display">08:00:00</span>
+                </div>
+                <div class="part-header">
+                  <span class="part-pill part-pill--core">MODULE // EXTRACTION</span>
+                  <h2 class="part-title">Requête privilège — niveau 4</h2>
+                  <p class="part-desc">
+                    Réponse requise sous délai système. Erreur ou timeout → sous-routine PARE_FEU_AGRESSIF.
+                  </p>
+                </div>
+                <div class="timer-bar">
+                  <span class="timer-bar__label">TTL session question</span>
+                  <div class="timer-track"><div class="timer-fill" id="timer-fill"></div></div>
+                </div>
+                <div class="qcm-card qcm-card--core" id="qcm-part3">
+                  <p class="qcm-label"><span class="prompt">&gt;&gt;</span> QUERY</p>
+                  <p class="qcm-text" id="q3-text"></p>
+                  <div class="qcm-options" id="q3-options"></div>
+                  <p class="qcm-feedback" id="q3-feedback" hidden></p>
+                </div>
+              </section>
+
+              <section id="view-platform-hard" class="view view-platform view-platform--hard" hidden>
+                <p class="term-line term-line--warn"><span class="term-prompt">WARN</span> pare-feu.mode=NERVOUS</p>
+                <div class="platform-header">
+                  <h2 class="platform-title">Sous-système défensif — surcharge</h2>
+                  <p class="platform-desc">Maintenir la session <strong>10,0 s</strong>. Éviter projectiles &amp; pics.</p>
+                  <p class="platform-keys">[ ← / → ] déplacement · [ SPACE ] propulsion verticale</p>
+                </div>
+                <canvas id="platform-canvas-hard" width="720" height="280" aria-label="Simulation pare-feu"></canvas>
+                <p class="platform-status" id="platform-status-hard"></p>
+                <div class="platform-actions">
+                  <button type="button" class="btn btn-primary" id="btn-hard-retry" hidden>Réexécuter module boss</button>
+                  <button type="button" class="btn btn-primary" id="btn-hard-back" hidden>Retour requête</button>
+                </div>
+              </section>
+
+              <section id="view-ending" class="view view-ending" hidden>
+                <p class="term-line term-line--ok"><span class="term-prompt">OK</span> exfiltration terminée</p>
+                <div class="ending-card">
+                  <h2 class="ending-title">[ MAINFRAME COMPROMIS ]</h2>
+                  <p class="ending-text" id="ending-text">
+                    Archive signée. Canaux : DGSI (anonyme).
+                  </p>
+                  <p class="ending-joke">
+                    État du monde : <span class="ending-ok">STABLE</span><br />
+                    <strong>Ton partiel : toujours pas révisé.</strong>
+                  </p>
+                  <button type="button" class="btn btn-primary" id="btn-replay">&gt; nouvelle session</button>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+
+
+      </div>
+
+      <aside class="hud-panel hud-panel--layers" aria-label="Couches d’analyse">
+        <div class="hud-panel__title">COUCHES</div>
+        <ul class="hud-layers">
+          <li class="hud-layer hud-layer--on"><span class="hud-layer__dot"></span> conflits</li>
+          <li class="hud-layer hud-layer--on"><span class="hud-layer__dot"></span> hotspots</li>
+          <li class="hud-layer hud-layer--on"><span class="hud-layer__dot"></span> outages</li>
+          <li class="hud-layer"><span class="hud-layer__dot hud-layer__dot--off"></span> sanctions</li>
+          <li class="hud-layer hud-layer--on"><span class="hud-layer__dot"></span> trafic log</li>
+        </ul>
+        <div class="hud-table-wrap">
+          <div class="hud-table__caption">Viewport (synthèse)</div>
+          <table class="hud-table" id="wm-table-view">
+            <thead>
+              <tr>
+                <th scope="col">Param</th>
+                <th scope="col">Valeur</th>
+              </tr>
+            </thead>
+            <tbody id="wm-tbody-view"></tbody>
+          </table>
+        </div>
+        <div class="hud-table-wrap">
+          <div class="hud-table__caption">Couches actives</div>
+          <table class="hud-table hud-table--compact" id="wm-table-layers">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Layer</th>
+                <th scope="col">État</th>
+              </tr>
+            </thead>
+            <tbody id="wm-tbody-layers"></tbody>
+          </table>
+        </div>
+      </aside>
+    </div>
+
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

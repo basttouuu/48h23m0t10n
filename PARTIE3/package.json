@@ -1,0 +1,8 @@
+{
+  "name": "erreur-404-nuit-blanche",
+  "private": true,
+  "description": "Partie 3 — statique (HTML/CSS/JS)",
+  "scripts": {
+    "start": "npx --yes serve@14 . -p 3000"
+  }
+}
