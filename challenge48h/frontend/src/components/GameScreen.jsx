@@ -1,6 +1,6 @@
 import './GameScreen.css';
 import { useState, useEffect, useRef, useCallback } from 'react';
-import marioImg from '../assets/mario.jpg';
+import marioImg from '../assets/mario.png';
 import villainGif from '../assets/villain.gif';
 import doorImg from '../assets/door.png';
 import TimerBar from './TimerBar';

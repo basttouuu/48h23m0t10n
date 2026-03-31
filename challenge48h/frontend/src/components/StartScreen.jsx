@@ -1,5 +1,5 @@
 import './StartScreen.css';
-import marioImg from '../assets/mario.jpg';
+import marioImg from '../assets/mario.png';
 import villainGif from '../assets/villain.gif';
 import { QUESTION_TIME } from '../constants/game';
 
