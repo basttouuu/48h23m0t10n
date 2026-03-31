@@ -1,0 +1,311 @@
+/* ── Firewall Theme - Hacker Terminal ── */
+:root {
+  --fw-primary:   #00ff00;
+  --fw-accent:    #008800;
+  --fw-success:   #3fb950;
+  --fw-danger:    #ff3333;
+  --fw-bg:        #050a05;
+  --fw-bg2:       #0a140a;
+  --fw-border:    #1a3a1a;
+  --fw-text:      #b4edb4;
+  --fw-text2:     #6e996e;
+}
+
+.fw-screen {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--fw-bg);
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(0,255,0,0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0,136,0,0.05) 0%, transparent 50%);
+  color: var(--fw-text);
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+}
+
+.fw-container {
+  width: 100%;
+  max-width: 900px;
+}
+
+.fw-text-center { text-align: center; }
+
+.fw-screen h1,
+.fw-screen h2,
+.fw-screen h3 {
+  color: var(--fw-primary);
+  margin-bottom: 5px;
+}
+
+.fw-glitch {
+  font-size: 2.5rem;
+  margin-bottom: 5px;
+  text-shadow: 0 0 10px rgba(0,255,0,0.4);
+}
+
+.fw-subtitle {
+  color: var(--fw-text2);
+  margin-bottom: 30px;
+}
+
+/* ── Hub Grid ── */
+.fw-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.fw-barrier-card {
+  background-color: var(--fw-bg2);
+  border: 1px solid var(--fw-border);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
+.fw-barrier-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--fw-primary);
+  box-shadow: 0 5px 20px rgba(0,255,0,0.2);
+}
+
+.fw-barrier-card.unlocked  { border-color: var(--fw-success); box-shadow: 0 0 10px rgba(63,185,80,0.1); }
+.fw-barrier-card.accessible { border-color: var(--fw-primary); }
+.fw-barrier-card.locked    { border-color: var(--fw-danger); opacity: 0.5; pointer-events: none; }
+
+.fw-barrier-num {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--fw-primary);
+  margin-bottom: 10px;
+}
+
+.fw-barrier-title {
+  font-size: 0.85rem;
+  color: var(--fw-text2);
+  margin-top: 4px;
+}
+
+.fw-barrier-status {
+  margin-top: 10px;
+  font-size: 0.8rem;
+}
+
+/* ── Header ── */
+.fw-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--fw-border);
+}
+
+.fw-header-info p {
+  margin-top: 5px;
+  color: var(--fw-text2);
+}
+
+.fw-back-btn {
+  padding: 8px 16px;
+  background-color: var(--fw-bg2);
+  border: 1px solid var(--fw-border);
+  border-radius: 6px;
+  color: var(--fw-primary);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.fw-back-btn:hover {
+  background-color: var(--fw-border);
+  box-shadow: 0 0 8px rgba(0,255,0,0.3);
+}
+
+/* ── Barrier Card ── */
+.fw-card {
+  background-color: var(--fw-bg2);
+  border: 1px solid var(--fw-border);
+  border-radius: 8px;
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.fw-card-title {
+  color: var(--fw-primary);
+  margin-bottom: 15px;
+}
+
+.fw-card-desc {
+  color: var(--fw-text2);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* ── Progress Bar ── */
+.fw-progress-bar {
+  background-color: var(--fw-border);
+  border-radius: 4px;
+  height: 6px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.fw-progress-fill {
+  height: 100%;
+  background-color: var(--fw-primary);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 6px rgba(0,255,0,0.5);
+}
+
+/* ── Form ── */
+.fw-input-group {
+  margin-bottom: 20px;
+}
+
+.fw-input-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--fw-text);
+}
+
+.fw-input {
+  width: 100%;
+  padding: 10px 12px;
+  background-color: var(--fw-bg);
+  border: 1px solid var(--fw-border);
+  border-radius: 6px;
+  color: var(--fw-primary);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.fw-input:focus {
+  outline: none;
+  border-color: var(--fw-primary);
+  box-shadow: 0 0 8px rgba(0,255,0,0.2);
+}
+
+/* ── Buttons ── */
+.fw-btn-group {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.fw-btn {
+  flex: 1;
+  padding: 12px 20px;
+  border: 1px solid var(--fw-primary);
+  border-radius: 6px;
+  font-weight: bold;
+  font-family: inherit;
+  cursor: pointer;
+  background-color: var(--fw-bg);
+  color: var(--fw-primary);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.fw-btn:hover {
+  background-color: var(--fw-primary);
+  color: var(--fw-bg);
+}
+
+.fw-btn-primary {
+  background-color: var(--fw-bg2);
+}
+
+/* ── Message ── */
+.fw-message {
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  display: none;
+}
+
+.fw-message.show  { display: block; }
+
+.fw-message.success {
+  background-color: rgba(63,185,80,0.1);
+  border: 1px solid var(--fw-success);
+  color: var(--fw-success);
+}
+
+.fw-message.error {
+  background-color: rgba(255,51,51,0.1);
+  border: 1px solid var(--fw-danger);
+  color: var(--fw-danger);
+}
+
+/* ── Info Grid ── */
+.fw-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.fw-info-item {
+  background-color: var(--fw-bg);
+  border: 1px solid var(--fw-border);
+  border-radius: 6px;
+  padding: 10px;
+  text-align: center;
+}
+
+.fw-info-label {
+  font-size: 0.7rem;
+  color: var(--fw-text2);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.fw-info-value {
+  font-size: 1.1rem;
+  color: var(--fw-primary);
+  font-weight: bold;
+  margin-top: 4px;
+}
+
+/* ── Hints ── */
+.fw-hint-display {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: var(--fw-bg2);
+  border-left: 3px solid var(--fw-primary);
+  color: var(--fw-primary);
+  display: none;
+  line-height: 1.5;
+}
+
+.fw-hint-display.show { display: block; }
+
+/* ── Barrier 3 hidden div ── */
+.secret-pass {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ── Barrier 6 inline hint ── */
+.fw-inline-hint {
+  font-family: monospace;
+  font-size: 0.85em;
+  color: var(--fw-text2);
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+}

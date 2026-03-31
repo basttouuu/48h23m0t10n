@@ -2,7 +2,7 @@ import './BrowserScreen.css';
 import { useState } from 'react';
 import { FAKE_RESULTS, REAL_RESULTS, shuffle } from '../data/searchResults';
 
-export default function BrowserScreen({ onEnterGame }) {
+export default function BrowserScreen({ onEnterGame, onEnterPartie2, onEnterPartie3 }) {
   const [query, setQuery] = useState('');
   const [searched, setSearched] = useState(false);
   const [results, setResults] = useState([]);
@@ -66,6 +66,16 @@ export default function BrowserScreen({ onEnterGame }) {
           <span className="url-text">{urlBar}</span>
         </div>
         <button className="nav-btn nav-menu">⋮</button>
+      </div>
+
+      {/* Bookmarks bar */}
+      <div className="browser-bookmarks">
+        <button className="bookmark-item" onClick={onEnterPartie2}>
+          🔐 Partie 2 – EPSILON Firewall
+        </button>
+        <button className="bookmark-item" onClick={onEnterPartie3}>
+          🛑 Partie 3 - Cœur du réseau
+        </button>
       </div>
 
       {/* Content */}

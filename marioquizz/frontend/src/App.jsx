@@ -5,6 +5,8 @@ import './App.css';
 import BrowserScreen from './components/BrowserScreen';
 import StartScreen from './components/StartScreen';
 import GameScreen from './components/GameScreen';
+import Partie2Screen from './components/partie2/Partie2Screen';
+import Partie3Screen from './components/partie3/Partie3Screen';
 
 const BACKEND_URL = 'https://48h-plateforme.vercel.app';
 
@@ -67,8 +69,22 @@ export default function App() {
     );
   }
 
+  if (gameState === 'PARTIE2') {
+    return <Partie2Screen onBack={() => setGameState('BROWSER')} />;
+  }
+
+  if (gameState === 'PARTIE3') {
+    return <Partie3Screen onBack={() => setGameState('BROWSER')} />;
+  }
+
   if (gameState === 'BROWSER') {
-    return <BrowserScreen onEnterGame={() => setGameState('START')} />;
+    return (
+      <BrowserScreen 
+        onEnterGame={() => setGameState('START')} 
+        onEnterPartie2={() => setGameState('PARTIE2')} 
+        onEnterPartie3={() => setGameState('PARTIE3')} 
+      />
+    );
   }
 
   if (gameState === 'START') {
