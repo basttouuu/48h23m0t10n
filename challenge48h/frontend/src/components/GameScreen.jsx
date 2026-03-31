@@ -14,6 +14,7 @@ import {
   VILLAIN_START,
 } from '../constants/game';
 
+/** Affiche et gère le mini-jeu Quiz Mario avec poursuite du boss. */
 export default function GameScreen({ questions, playerName, onBack }) {
   const totalQ = questions.length;
   const marioStep = 75 / totalQ;
@@ -41,6 +42,7 @@ export default function GameScreen({ questions, playerName, onBack }) {
 
   const q = questions[currentIndex];
 
+  /** Vérifie les conditions de défaite (perte des vies ou Boss qui rattrape Mario). */
   const checkDeath = useCallback((newVillain, newMario, newLives) => {
     if (newVillain >= newMario - 5 || newLives <= 0) {
       setIsDying(true);
@@ -59,8 +61,9 @@ export default function GameScreen({ questions, playerName, onBack }) {
     }
     timerRef.current = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
     return () => clearTimeout(timerRef.current);
-  }, [timeLeft, timerActive, feedback, showSolution]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [timeLeft, timerActive, feedback, showSolution]);
 
+  /** Passe à la question suivante ou déclenche la victoire. */
   const goNext = useCallback(() => {
     setFeedback(null);
     setShowHint(false);

@@ -46,6 +46,7 @@ const FALLBACK_QUESTIONS = [
   },
 ];
 
+/** Gère l'état global et le routage principal de l'application. */
 export default function App() {
   const [gameState, setGameState] = useState('BROWSER');
   const [questions, setQuestions] = useState([]);
@@ -73,10 +74,10 @@ export default function App() {
     const part1Done = localStorage.getItem('part1_completed') === 'true';
     if (!part1Done) {
       return (
-        <div className="screen" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#000', color: 'red'}}>
+        <div className="screen access-denied-screen">
           <h2>ACCÈS REFUSÉ</h2>
           <p>Vous devez terminer le jeu (Partie 1) pour accéder à ce réseau.</p>
-          <button onClick={() => setGameState('BROWSER')} style={{marginTop: '20px', padding: '10px', cursor: 'pointer'}}>Retour</button>
+          <button onClick={() => setGameState('BROWSER')} className="back-btn">Retour</button>
         </div>
       );
     }
@@ -87,10 +88,10 @@ export default function App() {
     const part2Done = localStorage.getItem('barrier10') === 'unlocked';
     if (!part2Done) {
       return (
-        <div className="screen" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#000', color: 'red'}}>
+        <div className="screen access-denied-screen">
           <h2>ACCÈS STRICTEMENT REFUSÉ</h2>
           <p>Vous devez pirater le pare-feu EPSILON (Partie 2) pour accéder au Cœur de Réseau.</p>
-          <button onClick={() => setGameState('BROWSER')} style={{marginTop: '20px', padding: '10px', cursor: 'pointer'}}>Retour</button>
+          <button onClick={() => setGameState('BROWSER')} className="back-btn">Retour</button>
         </div>
       );
     }
