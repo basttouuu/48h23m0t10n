@@ -2,18 +2,19 @@ import { useState, useEffect, useRef } from 'react';
 import './Firewall.css';
 
 const BARRIERS = [
-  { num: 1,  password: 'html_is_easy',       hint: '💡 Le html contient parfois des commentaires cachés...', title: 'Barrière 1', subtitle: 'Authentification système',        label: 'Mot de passe :',       btn: 'Accéder' },
-  { num: 2,  password: 'js_console_pw',      hint: '💡 Ouvre la console de développement (F12 > Console), une variable globale s\'y cache...', title: 'Barrière 2', subtitle: 'Variables globales JS', label: 'Mot de passe :',       btn: 'Accéder' },
-  { num: 3,  password: 'css_master',         hint: '💡 Le mot de passe est sous tes yeux, mais caché... Inspecte les éléments !', title: 'Barrière 3', subtitle: 'Pare-feu réseau',              label: 'Clé de chiffrement :', btn: 'Déverrouiller' },
-  { num: 4,  password: 'local_storage_key',  hint: '💡 Vérifie le stockage local du navigateur (F12 > Application > Local Storage).', title: 'Barrière 4', subtitle: 'Stockage local',              label: 'Mot de passe :',       btn: 'Accéder' },
-  { num: 5,  password: 'cookie_monster_pw',  hint: '💡 Les cookies sont toujours délicieux (F12 > Application > Cookies).', title: 'Barrière 5', subtitle: 'Session sécurisée',             label: 'Mot de passe :',       btn: 'Accéder' },
-  { num: 6,  password: 'base64_decode',      hint: '💡 L\'encodage ce n\'est pas du chiffrement. Décode le message Base64 et tu trouveras...', title: 'Barrière 6', subtitle: 'Déboguer le système',          label: 'Mot de passe :',       btn: 'Accéder' },
-  { num: 7,  password: 'hidden_value_pw',    hint: '💡 Il y a un champ de texte caché dans cette page... (F12 > Éléments).', title: 'Barrière 7', subtitle: 'Gestion de version contrôlée',  label: 'Mot de passe :',       btn: 'Accéder' },
-  { num: 8,  password: 'network_tab_pw',     hint: '💡 Une requête réseau a été faite au chargement de la page (F12 > Réseau/Network).', title: 'Barrière 8', subtitle: 'Analyse réseau',               label: 'Mot de passe :',       btn: 'Accéder' },
-  { num: 9,  password: 'console_log_pw',     hint: '💡 Il y a un message rouge dans la console (F12 > Console).', title: 'Barrière 9', subtitle: 'Débogage avancé',              label: 'Mot de passe :',       btn: 'Accéder' },
-  { num: 10, password: 'call_me_pw',         hint: '💡 Appelle la fonction getFlag() dans la console.', title: 'Barrière 10', subtitle: 'Exécution de fonction',          label: 'Mot de passe :',       btn: 'Accéder' },
+  { num: 1,  password: 'html_is_easy',       hint: '💡 Les fondations structurales de cette page cachent un message invisible à l\'œil nu...', title: 'Barrière 1', subtitle: 'Authentification système',        label: 'Mot de passe :',       btn: 'Accéder' },
+  { num: 2,  password: 'js_console_pw',      hint: '💡 L\'environnement d\'exécution garde en mémoire "globale" une sauvegarde précieuse.', title: 'Barrière 2', subtitle: 'Variables globales JS', label: 'Mot de passe :',       btn: 'Accéder' },
+  { num: 3,  password: 'css_master',         hint: '💡 La clé est affichée, mais son style dicte de ne pas la montrer (display)...', title: 'Barrière 3', subtitle: 'Pare-feu réseau',              label: 'Clé de chiffrement :', btn: 'Déverrouiller' },
+  { num: 4,  password: 'local_storage_key',  hint: '💡 Le navigateur retient toujours localement les jetons et clés d\'administration.', title: 'Barrière 4', subtitle: 'Stockage local',              label: 'Mot de passe :',       btn: 'Accéder' },
+  { num: 5,  password: 'cookie_monster_pw',  hint: '💡 Une petite miette de données, laissée par le serveur, permet de maintenir ta session.', title: 'Barrière 5', subtitle: 'Session sécurisée',             label: 'Mot de passe :',       btn: 'Accéder' },
+  { num: 6,  password: 'base64_decode',      hint: '💡 L\'encodage n\'est pas du chiffrement. Il utilise juste une base de 64 caractères.', title: 'Barrière 6', subtitle: 'Déboguer le système',          label: 'Mot de passe :',       btn: 'Accéder' },
+  { num: 7,  password: 'hidden_value_pw',    hint: '💡 Un champ de texte occulte (hidden) détient l\'accès au système, cherche dans l\'arborescence.', title: 'Barrière 7', subtitle: 'Gestion de version contrôlée',  label: 'Mot de passe :',       btn: 'Accéder' },
+  { num: 8,  password: 'network_tab_pw',     hint: '💡 Dans l\'ombre, une transmission de données a fuité dès ton arrivée sur la page.', title: 'Barrière 8', subtitle: 'Analyse réseau',               label: 'Mot de passe :',       btn: 'Accéder' },
+  { num: 9,  password: 'console_log_pw',     hint: '💡 Le système a hurlé une erreur à la figure de l\'administrateur. L\'as-tu lue ?', title: 'Barrière 9', subtitle: 'Débogage avancé',              label: 'Mot de passe :',       btn: 'Accéder' },
+  { num: 10, password: 'call_me_pw',         hint: '💡 La fonction d\'obtention du drapeau "getFlag" n\'attend qu\'une chose : que tu l\'invoques.', title: 'Barrière 10', subtitle: 'Exécution de fonction',          label: 'Mot de passe :',       btn: 'Accéder' },
 ];
 
+/** Affiche et gère le piratage d'une barrière individuelle de la partie 2. */
 export default function BarrierScreen({ barrierNum, onBack, onNext }) {
   const config = BARRIERS[barrierNum - 1];
   const [inputValue, setInputValue] = useState('');
@@ -24,7 +25,6 @@ export default function BarrierScreen({ barrierNum, onBack, onNext }) {
   const commentContainerRef = useRef(null);
   const startTimeRef = useRef(Date.now());
 
-  // Reset state when barrier changes
   useEffect(() => {
     setInputValue('');
     setMessage({ text: '', type: '' });
@@ -34,7 +34,6 @@ export default function BarrierScreen({ barrierNum, onBack, onNext }) {
     startTimeRef.current = Date.now();
   }, [barrierNum]);
 
-  // Timer
   useEffect(() => {
     const interval = setInterval(() => {
       setElapsed(Math.floor((Date.now() - startTimeRef.current) / 1000));
@@ -74,6 +73,7 @@ export default function BarrierScreen({ barrierNum, onBack, onNext }) {
     };
   }, [barrierNum]);
 
+  /** Vérifie la solution soumise par l'utilisateur pour débloquer la barrière. */
   const checkPassword = () => {
     const input = inputValue.trim().toLowerCase();
     if (input === config.password) {

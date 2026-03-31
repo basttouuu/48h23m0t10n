@@ -14,8 +14,8 @@ const BARRIER_TITLES = [
   'Exécution Fonction',
 ];
 
+/** Affiche le hub central de l'agent qui liste et gère l'état d'accès aux différentes barrières. */
 export default function HubScreen({ onSelectBarrier }) {
-  // Read localStorage each render so status stays fresh
   const [, refresh] = useState(0);
 
   const barriers = BARRIER_TITLES.map((title, i) => {

@@ -7,6 +7,9 @@ import StartScreen from './components/StartScreen';
 import GameScreen from './components/GameScreen';
 import Partie2Screen from './components/partie2/Partie2Screen';
 import Partie3Screen from './components/partie3/Partie3Screen';
+import DesktopScreen from './components/DesktopScreen';
+import MailScreen from './components/MailScreen';
+import GlitchScreen from './components/GlitchScreen';
 
 const BACKEND_URL = 'https://48h-plateforme.vercel.app';
 
@@ -48,7 +51,7 @@ const FALLBACK_QUESTIONS = [
 
 /** Gère l'état global et le routage principal de l'application. */
 export default function App() {
-  const [gameState, setGameState] = useState('BROWSER');
+  const [gameState, setGameState] = useState('DESKTOP');
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [playerName, setPlayerName] = useState('');
@@ -77,11 +80,11 @@ export default function App() {
         <div className="screen access-denied-screen">
           <h2>ACCÈS REFUSÉ</h2>
           <p>Vous devez terminer le jeu (Partie 1) pour accéder à ce réseau.</p>
-          <button onClick={() => setGameState('BROWSER')} className="back-btn">Retour</button>
+          <button onClick={() => setGameState('DESKTOP')} className="back-btn">Retour au Bureau</button>
         </div>
       );
     }
-    return <Partie2Screen onBack={() => setGameState('BROWSER')} />;
+    return <Partie2Screen onBack={() => setGameState('DESKTOP')} />;
   }
 
   if (gameState === 'PARTIE3') {
@@ -91,19 +94,38 @@ export default function App() {
         <div className="screen access-denied-screen">
           <h2>ACCÈS STRICTEMENT REFUSÉ</h2>
           <p>Vous devez pirater le pare-feu EPSILON (Partie 2) pour accéder au Cœur de Réseau.</p>
-          <button onClick={() => setGameState('BROWSER')} className="back-btn">Retour</button>
+          <button onClick={() => setGameState('DESKTOP')} className="back-btn">Retour au Bureau</button>
         </div>
       );
     }
-    return <Partie3Screen onBack={() => setGameState('BROWSER')} />;
+    return <Partie3Screen onBack={() => setGameState('DESKTOP')} />;
+  }
+
+  if (gameState === 'DESKTOP') {
+    return (
+      <DesktopScreen
+        onLaunchBrowser={() => setGameState('BROWSER')}
+        onLaunchMail={() => setGameState('MAIL')}
+        onLaunchPartie3={() => setGameState('GLITCH')}
+      />
+    );
+  }
+
+  if (gameState === 'MAIL') {
+    return <MailScreen onBack={() => setGameState('DESKTOP')} />;
+  }
+
+  if (gameState === 'GLITCH') {
+    return <GlitchScreen onComplete={() => setGameState('PARTIE3')} />;
   }
 
   if (gameState === 'BROWSER') {
     return (
-      <BrowserScreen 
-        onEnterGame={() => setGameState('START')} 
-        onEnterPartie2={() => setGameState('PARTIE2')} 
-        onEnterPartie3={() => setGameState('PARTIE3')} 
+      <BrowserScreen
+        onEnterGame={() => setGameState('START')}
+        onEnterPartie2={() => setGameState('PARTIE2')}
+        onEnterPartie3={() => setGameState('GLITCH')}
+        onClose={() => setGameState('DESKTOP')}
       />
     );
   }
@@ -126,7 +148,7 @@ export default function App() {
   }
 
   if (gameState === 'PLAYING') {
-    return <GameScreen questions={questions} playerName={playerName} onBack={() => setGameState('BROWSER')} />;
+    return <GameScreen questions={questions} playerName={playerName} onBack={() => setGameState('DESKTOP')} />;
   }
 
   return null;

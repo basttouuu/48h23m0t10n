@@ -3,6 +3,7 @@ import './Partie3.css';
 import { QUESTIONS, PART3_MS } from './partie3-questions';
 import SurvivalGame from './SurvivalGame';
 
+/** Composant principal gérant la boucle du jeu final (Partie 3). */
 export default function Partie3Screen({ onBack }) {
   // states
   const [view, setView] = useState(() => {
@@ -49,7 +50,7 @@ export default function Partie3Screen({ onBack }) {
     return () => clearInterval(id);
   }, []);
 
-  // Theme data properties based on view
+  /** Récupère les variables de thème basées sur le niveau actuel de la partie 3. */
   const getThemeVars = () => {
     if (view === 'part3') return { theme: 'part3', title: 'root@epsILON-core', sub: 'privilege escalation — active', path: '/var/epsilon/mainframe/exfil' };
     if (view === 'firstLaunch') return { theme: 'first-launch', title: 'XCOM // PRIME', sub: 'operation boot — primary channel', path: '/bridge/init' };
@@ -60,18 +61,19 @@ export default function Partie3Screen({ onBack }) {
   
   const themeVars = getThemeVars();
 
-  // Reset function
+  /** Réinitialise l'état du tutoriel d'accueil (first launch). */
   const resetFirstLaunch = () => {
     localStorage.removeItem('erreur404.firstLaunchSeen');
     setView('firstLaunch');
   };
 
+  /** Valide l'étape de l'accueil et passe au menu de lancement. */
   const handleLaunchContinue = () => {
     localStorage.setItem('erreur404.firstLaunchSeen', '1');
     setView('intro');
   };
   
-  // Start Main Game
+  /** Initialise et lance la série de questions de la Partie 3. */
   const startGame = () => {
     if (countdownIntervalRef.current) clearInterval(countdownIntervalRef.current);
     setQuestionIndex(0);
@@ -90,11 +92,13 @@ export default function Partie3Screen({ onBack }) {
     }, 1000);
   };
   
+  /** Stoppe net le minuteur de la question en cours. */
   const endQuestionTimer = () => {
     if (questionTimerRef.current) clearInterval(questionTimerRef.current);
     questionTimerRef.current = null;
   };
   
+  /** Prépare et rend la question demandée tout en lançant la barre de progression temporelle. */
   const renderQuestion = (index) => {
     endQuestionTimer();
     const q = QUESTIONS[index];
@@ -112,7 +116,7 @@ export default function Partie3Screen({ onBack }) {
     setTimerTransition('none');
     setTimerWidth('100%');
     
-    requestAnimationFrame(() => { // wait for layout
+    requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         setTimerTransition(`width ${PART3_MS}ms linear`);
         setTimerWidth('0%');
@@ -127,6 +131,7 @@ export default function Partie3Screen({ onBack }) {
     }, 200);
   };
 
+  /** Traite le cas où le joueur n'a pas répondu à temps, menant à la phase de survie. */
   const failByTimeout = () => {
     setBtnDisabled(true);
     setShowFeedback(true);
@@ -136,6 +141,7 @@ export default function Partie3Screen({ onBack }) {
     }, 900);
   };
 
+  /** Evalue la réponse soumise, déclenche la victoire ou la défaite de la question. */
   const handleAnswer = (i) => {
     endQuestionTimer();
     setBtnDisabled(true);
@@ -157,12 +163,14 @@ export default function Partie3Screen({ onBack }) {
     }, 400);
   };
   
+  /** Lance le mini-jeu de survie après une erreur ou l'épuisement du temps. */
   const startPlatformHard = () => {
     setView('platformHard');
     setPlatformEnded(false);
     setPlatformWon(false);
   };
 
+  /** Formate une durée en secondes en HH:MM:SS. */
   const formatClock = (sec) => {
     const h = Math.floor(sec / 3600);
     const m = Math.floor((sec % 3600) / 60);

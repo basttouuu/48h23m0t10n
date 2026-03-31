@@ -2,7 +2,8 @@ import './BrowserScreen.css';
 import { useState } from 'react';
 import { FAKE_RESULTS, REAL_RESULTS, shuffle } from '../data/searchResults';
 
-export default function BrowserScreen({ onEnterGame, onEnterPartie2, onEnterPartie3 }) {
+/** Composant simulant un navigateur web contenant le moteur de recherche et l'accès aux mini-jeux. */
+export default function BrowserScreen({ onEnterGame, onEnterPartie2, onEnterPartie3, onClose }) {
   const [query, setQuery] = useState('');
   const [searched, setSearched] = useState(false);
   const [results, setResults] = useState([]);
@@ -11,6 +12,7 @@ export default function BrowserScreen({ onEnterGame, onEnterPartie2, onEnterPart
   const [currentPage, setCurrentPage] = useState(1);
   const resultsPerPage = 5;
 
+  /** Gère la soumission du formulaire de recherche et filtre les résultats selon la progression. */
   const handleSearch = (e) => {
     e.preventDefault();
     if (!query.trim()) return;
@@ -32,6 +34,7 @@ export default function BrowserScreen({ onEnterGame, onEnterPartie2, onEnterPart
     setUrlBar(`koopasearch.biz/search?q=${encodeURIComponent(query)}`);
   };
 
+  /** Redirige vers le bon jeu ou site web factice en fonction du résultat cliqué. */
   const handleResultClick = (result, e) => {
     e.preventDefault();
     if (result.action === 'enter_game') {
@@ -53,6 +56,7 @@ export default function BrowserScreen({ onEnterGame, onEnterPartie2, onEnterPart
     setUrlBar(`http://${result.url}`);
   };
 
+  /** Permet de naviger en arrière via l'historique de recherche actif. */
   const handleBack = () => {
     if (activeSite) {
       setActiveSite(null);
@@ -64,6 +68,7 @@ export default function BrowserScreen({ onEnterGame, onEnterPartie2, onEnterPart
     }
   };
 
+  /** Réinitialise complètement le navigateur web aux paramètres par défaut (nouvel onglet). */
   const handleReset = () => {
     setSearched(false);
     setActiveSite(null);
@@ -80,7 +85,7 @@ export default function BrowserScreen({ onEnterGame, onEnterPartie2, onEnterPart
       {/* Titlebar */}
       <div className="browser-titlebar">
         <div className="browser-dots">
-          <span className="dot dot-red" />
+          <span className="dot dot-red" onClick={onClose} style={{ cursor: 'pointer' }} title="Fermer" />
           <span className="dot dot-yellow" />
           <span className="dot dot-green" />
         </div>

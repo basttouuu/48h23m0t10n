@@ -1,0 +1,53 @@
+.glitch-screen {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  color: #0f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Courier New', Courier, monospace;
+  overflow: hidden;
+  position: relative;
+}
+
+.glitch-text {
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  position: relative;
+  animation: glitch 1s linear infinite;
+  text-shadow: 2px 0 red, -2px 0 blue;
+}
+
+.glitch-sub {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  opacity: 0.8;
+  animation: blink 0.5s infinite;
+}
+
+.matrix-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+}
+
+@keyframes glitch {
+  2%, 64% { transform: translate(2px, 0) skew(0deg); }
+  4%, 60% { transform: translate(-2px, 0) skew(0deg); }
+  62% { transform: translate(0, 0) skew(5deg); text-shadow: -2px 0 red, 2px 0 blue; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

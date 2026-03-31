@@ -14,7 +14,7 @@ L'ensemble des phases est complètement lié : une sécurité vérifie l'accompl
 
 
 ## 🚀 Technologies Utilisées
-- **Frontend :** **React (Vite🚀)** pour une application ultra-réactive. Utilisation de CSS modulaire et de composants structurés.
+- **Frontend :** **React** pour une application ultra-réactive. Utilisation de CSS modulaire et de composants structurés.
 - **Backend :** **Node.js & Express** pour gérer l'API et les questions/scores.
 - **Base de Données :** **PostgreSQL** pour stocker les classements des joueurs et la liste des QCM.
 

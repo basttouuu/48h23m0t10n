@@ -2,6 +2,7 @@ import './GameOverScreen.css';
 import { useEffect } from 'react';
 import axios from 'axios';
 
+/** Affiche l'écran de fin de jeu, avec le score et les indices pour passer à la suite. */
 export default function GameOverScreen({ score, won, onRestart, playerName }) {
   useEffect(() => {
     if (won) {

@@ -3,6 +3,7 @@ import marioImg from '../assets/mario.png';
 import villainImg from '../assets/villain_boss.png';
 import { QUESTION_TIME } from '../constants/game';
 
+/** Affiche l'écran d'accueil du "Mario Quiz Adventure" et prépare l'initialisation de la partie 1. */
 export default function StartScreen({ onStart, playerName, setPlayerName, onBack }) {
   return (
     <div className="screen start-screen">
