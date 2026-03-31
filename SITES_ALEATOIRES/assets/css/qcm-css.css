@@ -1,0 +1,54 @@
+body {
+    font-family: 'Consolas', 'Courier New', monospace;
+    background-color: #1e1e1e;
+    color: #f1f1f1;
+    margin: 0; padding: 0;
+    display: flex; flex-direction: column; min-height: 100vh;
+}
+header {
+    background-color: #264de4;
+    color: white; padding: 2rem; text-align: center;
+    border-bottom: 5px solid #111;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+main {
+    flex: 1; max-width: 800px; margin: 2rem auto; width: 90%;
+    background: #2d2d30; padding: 2.5rem; border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+}
+.question {
+    margin-bottom: 2rem; 
+    border-left: 6px solid #264de4; 
+    padding: 15px 20px;
+    background-color: #252526;
+    border-radius: 0 8px 8px 0;
+}
+h3 { color: #264de4; margin-top: 0; font-size: 1.3rem;}
+label {
+    cursor: pointer; display: block; margin: 12px 0; font-size: 1.1rem;
+    transition: color 0.2s, transform 0.1s;
+    padding: 8px; border-radius: 4px; border: 1px solid transparent;
+}
+label:hover { color: #264de4; transform: translateX(5px); background-color: rgba(255,255,255,0.05); }
+input[type="radio"] { accent-color: #264de4; transform: scale(1.2); margin-right: 10px; }
+button {
+    background-color: #264de4; color: white; border: none;
+    padding: 18px 30px; font-size: 1.2rem; cursor: pointer;
+    border-radius: 8px; width: 100%; transition: transform 0.2s, filter 0.2s;
+    font-weight: bold; margin-top: 25px;
+    text-transform: uppercase; letter-spacing: 1px;
+}
+button:hover { filter: brightness(1.15); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+.hidden { display: none; }
+#result {
+    margin-top: 2.5rem; padding: 2rem; font-size: 1.4rem;
+    text-align: center; font-weight: bold; border-radius: 10px;
+    background-color: #1a1a1a; border: 3px dashed #264de4;
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); }
+}
+footer { text-align: center; padding: 1.5rem; background-color: #111; color: #777; font-size: 0.9rem; }

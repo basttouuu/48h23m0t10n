@@ -2,11 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('hub-container');
     const totalBarriers = 10;
 
-    const titles = [
-        "Authentification HTML", "Variables Globales JS", "CSS Caché (Display None)",
-        "Stockage LocalStorage", "Données Cookie", "Décodage Base64",
-        "Formulaire Input Hidden", "API Réseau (Fetch)", "Erreur Console", "Exécution Fonction"
-    ];
 
     if (container) {
         container.innerHTML = '';
@@ -24,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 cardHtml += '<a href="barrier' + i + '.html">';
                 cardHtml += '<div class="barrier-number">' + i + '</div>';
                 cardHtml += '<h3>Barrière ' + i + '</h3>';
-                cardHtml += '<p>' + titles[i-1] + '</p>';
                 cardHtml += '<div class="barrier-status">' + statusText + '</div>';
                 cardHtml += '</a></div>';
                 
