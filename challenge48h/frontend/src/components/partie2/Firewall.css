@@ -248,6 +248,17 @@
   color: var(--fw-danger);
 }
 
+.fw-success-msg {
+  margin-top: 40px;
+  padding: 20px;
+  border: 1px solid #0f0;
+  border-radius: 8px;
+  background: rgba(0, 255, 0, 0.1);
+  color: #0f0;
+  font-size: 1.1rem;
+  text-shadow: 0 0 5px #0f0;
+}
+
 /* ── Info Grid ── */
 .fw-info-grid {
   display: grid;

@@ -9,20 +9,8 @@ export default function Partie2Screen({ onBack }) {
 
   const backButton = (
     <button
+      className="back-nav-btn"
       onClick={onBack}
-      style={{
-        position: 'absolute',
-        top: '15px',
-        left: '15px',
-        zIndex: 99999,
-        padding: '0.5rem 1rem',
-        background: 'rgba(0, 0, 0, 0.7)',
-        color: '#fff',
-        border: '1px solid rgba(255,255,255,0.3)',
-        cursor: 'pointer',
-        fontFamily: 'monospace',
-        borderRadius: '4px'
-      }}
     >
       &lt; Retour Navigateur
     </button>

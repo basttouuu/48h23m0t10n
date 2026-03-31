@@ -4,6 +4,10 @@ import axios from 'axios';
 
 export default function GameOverScreen({ score, won, onRestart, playerName }) {
   useEffect(() => {
+    if (won) {
+      localStorage.setItem('part1_completed', 'true');
+    }
+    
     if (playerName) {
       axios
         .post('https://48h-plateforme.vercel.app/api/save-score', { playerName, score })
@@ -37,6 +41,10 @@ export default function GameOverScreen({ score, won, onRestart, playerName }) {
           {playerName && <p className="score-user">Bravo {playerName} !</p>}
         </div>
         <button className="cta-btn" onClick={onRestart}>🔄 REJOUER</button>
+      </div>
+      
+      <div className="secret-hint">
+        Indice : Il faut aller sur le site "Koopa Corp" pour accéder au réseau secret de la partie 2...
       </div>
     </div>
   );

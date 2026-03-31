@@ -1,15 +1,12 @@
 import './StartScreen.css';
 import marioImg from '../assets/mario.png';
-import villainGif from '../assets/villain.gif';
+import villainImg from '../assets/villain_boss.png';
 import { QUESTION_TIME } from '../constants/game';
 
 export default function StartScreen({ onStart, playerName, setPlayerName, onBack }) {
   return (
     <div className="screen start-screen">
-      <button 
-        onClick={onBack} 
-        style={{ position: 'absolute', top: 20, left: 20, background: 'rgba(0,0,0,0.5)', color: '#fff', border: '1px solid #555', padding: '8px 16px', borderRadius: '4px', cursor: 'pointer', zIndex: 100 }}
-      >
+      <button className="back-nav-btn" onClick={onBack}>
         &lt; Retour Navigateur
       </button>
 
@@ -43,7 +40,7 @@ export default function StartScreen({ onStart, playerName, setPlayerName, onBack
           </div>
           <div className="start-vs">VS</div>
           <div className="char-wrap">
-            <img src={villainGif} alt="Goomba Boss" className="start-villain" />
+            <img src={villainImg} alt="Goomba Boss" className="start-villain" />
             <span className="char-label boss-char">BOSS</span>
           </div>
         </div>

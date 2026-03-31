@@ -70,10 +70,30 @@ export default function App() {
   }
 
   if (gameState === 'PARTIE2') {
+    const part1Done = localStorage.getItem('part1_completed') === 'true';
+    if (!part1Done) {
+      return (
+        <div className="screen" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#000', color: 'red'}}>
+          <h2>ACCÈS REFUSÉ</h2>
+          <p>Vous devez terminer le jeu (Partie 1) pour accéder à ce réseau.</p>
+          <button onClick={() => setGameState('BROWSER')} style={{marginTop: '20px', padding: '10px', cursor: 'pointer'}}>Retour</button>
+        </div>
+      );
+    }
     return <Partie2Screen onBack={() => setGameState('BROWSER')} />;
   }
 
   if (gameState === 'PARTIE3') {
+    const part2Done = localStorage.getItem('barrier10') === 'unlocked';
+    if (!part2Done) {
+      return (
+        <div className="screen" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#000', color: 'red'}}>
+          <h2>ACCÈS STRICTEMENT REFUSÉ</h2>
+          <p>Vous devez pirater le pare-feu EPSILON (Partie 2) pour accéder au Cœur de Réseau.</p>
+          <button onClick={() => setGameState('BROWSER')} style={{marginTop: '20px', padding: '10px', cursor: 'pointer'}}>Retour</button>
+        </div>
+      );
+    }
     return <Partie3Screen onBack={() => setGameState('BROWSER')} />;
   }
 

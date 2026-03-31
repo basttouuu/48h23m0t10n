@@ -54,6 +54,12 @@ export default function HubScreen({ onSelectBarrier }) {
             </div>
           ))}
         </div>
+
+        {localStorage.getItem('barrier10') === 'unlocked' && (
+          <div className="fw-success-msg">
+            🔔 ALERTE SYSTÈME : Pare-feu EPSILON intégralement compromis. Vous avez désormais accès au Cœur de Réseau (Partie 3). Retournez au navigateur pour procéder.
+          </div>
+        )}
       </div>
     </div>
   );

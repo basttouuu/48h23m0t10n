@@ -1,7 +1,7 @@
 import './GameScreen.css';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import marioImg from '../assets/mario.png';
-import villainGif from '../assets/villain.gif';
+import villainImg from '../assets/villain_boss.png';
 import doorImg from '../assets/door.png';
 import TimerBar from './TimerBar';
 import GameOverScreen from './GameOverScreen';
@@ -165,10 +165,7 @@ export default function GameScreen({ questions, playerName, onBack }) {
 
   return (
     <div className={`game-wrapper ${isDamage ? 'damage-shake damage-flash' : ''} ${isDying ? 'death-fade' : ''}`}>
-      <button 
-        onClick={onBack} 
-        style={{ position: 'absolute', top: 10, left: 10, background: 'rgba(0,0,0,0.5)', color: '#fff', border: '1px solid #555', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', zIndex: 100, fontSize: '12px' }}
-      >
+      <button className="back-nav-btn" onClick={onBack}>
         &lt; Retour Navigateur
       </button>
 
@@ -215,7 +212,7 @@ export default function GameScreen({ questions, playerName, onBack }) {
           style={{ left: `${villainPos}%`, zIndex: isDying ? 10 : 3 }}
         >
           <div className="villain-label">⚡ BOSS</div>
-          <img src={villainGif} alt="Boss" className="villain-sprite" />
+          <img src={villainImg} alt="Boss" className="villain-sprite" />
         </div>
 
         <div

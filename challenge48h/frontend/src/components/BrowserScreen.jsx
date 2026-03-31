@@ -14,7 +14,17 @@ export default function BrowserScreen({ onEnterGame, onEnterPartie2, onEnterPart
   const handleSearch = (e) => {
     e.preventDefault();
     if (!query.trim()) return;
-    const mixed = shuffle([...REAL_RESULTS, ...FAKE_RESULTS]);
+
+    const part1Done = localStorage.getItem('part1_completed') === 'true';
+    const part2Done = localStorage.getItem('barrier10') === 'unlocked';
+
+    const availableRealResults = REAL_RESULTS.filter(r => {
+      if (r.action === 'partie2' && !part1Done) return false;
+      if (r.action === 'partie3' && !part2Done) return false;
+      return true;
+    });
+
+    const mixed = shuffle([...availableRealResults, ...FAKE_RESULTS]);
     setResults(mixed);
     setSearched(true);
     setActiveSite(null);
@@ -24,6 +34,10 @@ export default function BrowserScreen({ onEnterGame, onEnterPartie2, onEnterPart
 
   const handleResultClick = (result, e) => {
     e.preventDefault();
+    if (result.action === 'enter_game') {
+      onEnterGame();
+      return;
+    }
     if (result.action === 'partie2') {
       onEnterPartie2();
       return;
@@ -134,9 +148,6 @@ export default function BrowserScreen({ onEnterGame, onEnterPartie2, onEnterPart
               </div>
               <div className="search-btns">
                 <button type="submit" className="search-btn-main">Recherche KoopaSearch</button>
-                <button type="button" className="search-btn-secondary" onClick={onEnterGame}>
-                  🎮 J&apos;ai de la chance
-                </button>
               </div>
             </form>
             <div className="search-langs">

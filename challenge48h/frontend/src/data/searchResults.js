@@ -63,6 +63,12 @@ export const FAKE_RESULTS = [
 
 export const REAL_RESULTS = [
   {
+    title: 'Révision avec Mario Quiz Adventure',
+    url: 'mario-quiz.io/play',
+    desc: "🎮 J'ai de la chance ! Lancez le QCM ultime et prouvez que vous êtes le meilleur développeur du Royaume Champignon.",
+    action: 'enter_game',
+  },
+  {
     title: 'Koopa Corp - Portail Sécurité Interne',
     url: 'sec.koopacorp.biz/login',
     desc: 'Accès restreint. Seuls les administrateurs réseau certifiés sont autorisés à configurer le Firewall EPSILON.',
